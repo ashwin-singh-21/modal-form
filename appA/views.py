@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
 from .forms import employee,sample,car_gallery
 from .models import car_model
@@ -32,5 +33,6 @@ def car(request):
         form = car_gallery(request.POST)
         if form.is_valid():
             form.save()
+            return HttpResponse("<H1>YOU ENTERED CAR DETAILS</h1>")
     form = car_gallery()
     return render(request,'Output.html',{'form':form})
